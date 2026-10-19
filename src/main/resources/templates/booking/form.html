@@ -1,0 +1,218 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-
+awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Booking</title>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <h1>Create Booking</h1>
+
+        <p class="subtitle">
+            Add a new booking.
+        </p>
+    </div>
+
+    <div class="card">
+
+        <form th:action="@{/bookings}"
+              th:object="${bookingForm}"
+              method="post">
+
+            <!-- Booking Type -->
+            <div class="form-group">
+
+                <label for="bookingType">Booking Type</label>
+
+                <select
+                        id="bookingType"
+                        th:field="*{bookingType}"
+                        th:classappend="${#fields.hasErrors('bookingType')} ? 'input-error'">
+
+                    <option value="">Select a booking type</option>
+                    <option value="Match">Match</option>
+                    <option value="Practice">Practice</option>
+                    <option value="Private Session">Private Session</option>
+
+                </select>
+
+                <div class="field-error"
+                     th:if="${#fields.hasErrors('bookingType')}"
+                     th:errors="*{bookingType}">
+                </div>
+
+            </div>
+
+            <!-- Date -->
+            <div class="form-group">
+
+                <label for="date">Date</label>
+
+                <input
+                        id="date"
+                        type="date"
+                        th:field="*{date}"
+                        th:classappend="${#fields.hasErrors('date')} ? 'input-error'">
+
+                <div class="field-hint">
+                    Enter booking date.
+                </div>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('date')}"
+                        th:errors="*{date}">
+                </div>
+
+            </div>
+
+            <!-- Time -->
+            <div class="form-group">
+
+                <label for="time">Time</label>
+
+                <select
+                        id="time"
+                        th:field="*{time}"
+                        th:classappend="${#fields.hasErrors('time')} ? 'input-error'">
+
+                    <option value="">Select a time slot</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="10:00">10:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="12:00">12:00 PM</option>
+                    <option value="13:00">1:00 PM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="15:00">3:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                    <option value="17:00">5:00 PM</option>
+                    <option value="18:00">6:00 PM</option>
+                    <option value="19:00">7:00 PM</option>
+                    <option value="20:00">8:00 PM</option>
+                    <option value="21:00">9:00 PM</option>
+
+                </select>
+
+                <div class="field-hint">
+                    Enter booking time.
+                </div>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('time')}"
+                        th:errors="*{time}">
+                </div>
+
+            </div>
+
+            <!-- Court -->
+            <div class="form-group">
+
+                <label for="courtId">Court</label>
+
+                <select
+                        id="courtId"
+                        th:field="*{courtId}"
+                        th:classappend="${#fields.hasErrors('courtId')} ? 'input-error'">
+
+                    <option value="">
+                        Select a court
+                    </option>
+
+                    <option
+                            th:each="court : ${courts}"
+                            th:value="${court.courtID}"
+                            th:text="${court.courtID}">
+                    </option>
+
+                </select>
+
+                <div class="field-hint">
+                    Select a court for this booking.
+                </div>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('courtId')}"
+                        th:errors="*{courtId}">
+                </div>
+
+            </div>
+
+            <!-- Member -->
+            <div class="form-group">
+
+                <label for="memberId">Member</label>
+
+                <select
+                        id="memberId"
+                        th:field="*{memberId}"
+                        th:classappend="${#fields.hasErrors('memberId')} ? 'input-error'">
+
+                    <option value="">
+                        Select a member
+                    </option>
+
+                    <option
+                            th:each="member : ${members}"
+                            th:value="${member.memberID}"
+                            th:text="${member.memberName}">
+                    </option>
+
+                </select>
+
+                <div class="field-hint">
+                    Select a member for this booking.
+                </div>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('memberId')}"
+                        th:errors="*{memberId}">
+                </div>
+
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+
+                <a th:href="@{/bookings}"
+                   class="btn btn-secondary">
+                    Cancel
+                </a>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Create Booking
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="footer">
+        Advanced Web Development - Tennis Club Website
+    </div>
+
+</div>
+
+</body>
+</html>

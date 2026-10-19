@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-
+awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tennis Website Bookings</title>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Bookings</h1>
+            <p class="subtitle">
+                Manage your bookings.
+            </p>
+        </div>
+
+        <a th:href="@{/bookings/new}" class="btn btn-primary">
+            <i class="fa-jelly-duo fa-regular fa-plus"></i> Add New Booking
+        </a>
+
+    </div>
+
+    <div class="card">
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Booking Type</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Court</th>
+                    <th>Member</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="booking : ${bookings}">
+
+                    <td class="booking-id"
+                        th:text="${booking.bookingID}">
+                    </td>
+
+                    <td class="booking-bookingType"
+                        th:text="${booking.bookingType}">
+                    </td>
+
+                    <td>
+                        <span class="date"
+                              th:text="${booking.date}">
+                        </span>
+                    </td>
+
+                    <td>
+                        <span class="time"
+                              th:text="${booking.time}">
+                        </span>
+                    </td>
+
+                    <td th:text="${booking.courtID != null
+                                ? booking.courtID.courtNum
+                                : 'Not assigned'}">
+                    </td>
+
+                    <td th:text="${booking.memberID != null
+                            ? booking.memberID.memberName
+                            : 'Not assigned'}">
+                    </td>
+
+                    <td>
+                        <div class="actions">
+
+                            <a class="btn btn-edit"
+                               th:href="@{/bookings/{id}/edit(id=${booking.bookingID})}">
+                                <i class="fa-duotone fa-solid fa-pen"></i> Edit
+                            </a>
+
+                            <form
+                                    th:action="@{/bookings/{id}/delete(id=${booking.bookingID})}"
+                                    method="post">
+
+
+                                <button type="submit" class="btn btn-delete">
+                                    <i class="fa-solid fa-trash"></i> Delete
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(bookings)}">
+                    <td colspan="7" class="empty-state">
+                        No bookings found.
+                        Add your first booking to get started.
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        Advanced Web Development - Tennis Club Website
+    </div>
+
+</div>
+
+</body>
+</html>
