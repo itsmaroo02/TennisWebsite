@@ -20,10 +20,15 @@ awesome/6.7.2/css/all.min.css">
 <div class="container">
 
     <div class="page-header">
+    <div>
         <h1>Edit Booking</h1>
         <p class="subtitle">
             Update the booking details.
         </p>
+    </div>
+
+    <img src="/images/KTCL.png" alt="Kildare Tennis Club" class="logo">
+
     </div>
 
     <div class="card">
@@ -38,12 +43,17 @@ awesome/6.7.2/css/all.min.css">
 
                 <label for="bookingType">Booking Type</label>
 
-                <input
+                <select
                         id="bookingType"
-                        type="text"
-                        placeholder="Enter booking type"
                         th:field="*{bookingType}"
                         th:classappend="${#fields.hasErrors('bookingType')} ? 'input-error'">
+
+                    <option value="">Select a booking type</option>
+                    <option value="Match">Match</option>
+                    <option value="Practice">Practice</option>
+                    <option value="Private Session">Private Session</option>
+
+                </select>
 
                 <div class="field-hint">
                     Enter if this is a match or practice.
