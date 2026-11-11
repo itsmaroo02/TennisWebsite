@@ -8,6 +8,8 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+//*** Communicates with database and retrieves booking records ***//
+
 public interface BookingRepository
  extends JpaRepository<Booking, Long> {
 

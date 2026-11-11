@@ -6,8 +6,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+//*************** Stores booking information from API requests ***************//
+
 public class BookingApiRequest {
 
+    // Cannot be empty / just spaces
     @NotBlank(
             message = "Please choose whether this is a match or practice!"
     )

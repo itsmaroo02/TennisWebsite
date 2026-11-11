@@ -7,6 +7,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import org.springframework.format.annotation.DateTimeFormat;
 
+//*** Holds user info when creating / editing a booking ***//
+// Basically a container for the information on the HTML form
+
 public class BookingForm {
 
         @NotBlank(

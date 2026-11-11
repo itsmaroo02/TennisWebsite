@@ -11,8 +11,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//*** Handles requests for viewing, creating, editing, and deleting bookings ***//
+
+// HTTP METHODS
+// GET --> Get or view information (show all bookings)
+// POST --> Send information (create a booking)
+// PUT --> Update existing information (update a booking)
+// DELETE --> Delete information (delete a booking)
+
+// Tells spring this class handles website requests
 @Controller
-@RequestMapping("/bookings")
+@RequestMapping("/bookings") // base URL
 public class BookingController {
 
     private final BookingService bookingService;
@@ -29,6 +38,7 @@ public class BookingController {
         this.memberRepository = memberRepository;
     }
 
+    //*** Handles GET requests to /bookings ***//
     @GetMapping
     public String listBookings(Model model) {
 
@@ -37,9 +47,10 @@ public class BookingController {
                 bookingService.getBookings()
         );
 
-        return "booking/list";
+        return "booking/list"; // returns booking/list.html
     }
 
+    //*** Handles GET requests to /bookings/new ***//
     @GetMapping("/new")
     public String showBookingForm(Model model) {
 
@@ -58,9 +69,10 @@ public class BookingController {
                 courtRepository.findAll()
         );
 
-        return "booking/form";
+        return "booking/form"; // returns booking/form.html
     }
 
+    //*** Handles POST requests to /bookings ***//
     @PostMapping
     public String createBooking(
             @Valid
@@ -117,6 +129,7 @@ public class BookingController {
         return "redirect:/bookings";
     }
 
+    //*** Handles requests to /bookings/{id}/edit ***//
     @GetMapping("/{id}/edit")
     public String showEditForm(
             @PathVariable Long id,
@@ -142,6 +155,8 @@ public class BookingController {
                                 : null
                 );
 
+        //  ? : --> checks a condition and chooses one of two values
+
         model.addAttribute(
                 "bookingForm",
                 bookingForm
@@ -159,9 +174,10 @@ public class BookingController {
                 memberRepository.findAll()
         );
 
-        return "booking/edit";
+        return "booking/edit"; // opens booking/edit.html
     }
 
+    //*** Handles POST requests to update a specific booking ***//
     @PostMapping("/{id}")
     public String updateBooking(
             @PathVariable Long id,
@@ -232,6 +248,7 @@ public class BookingController {
         return "redirect:/bookings";
     }
 
+    //*** Handles POST requests to delete a specific booking ***//
     @PostMapping("/{id}/delete")
     public String deleteBooking(
             @PathVariable Long id) {

@@ -8,6 +8,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+//*************** Stores the booking info returned by the API ***************//
+
 public class BookingApiResponse {
 
     private String bookingType;

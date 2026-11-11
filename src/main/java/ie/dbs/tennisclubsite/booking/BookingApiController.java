@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//*************** Handles REST API requests for bookings ***************//
+
+// Tells spring this class handles REST API requests
 @RestController
-@RequestMapping("/api/bookings")
+@RequestMapping("/api/bookings") // base URL
 public class BookingApiController {
 
     private final BookingService bookingService;
@@ -21,6 +24,7 @@ public class BookingApiController {
         this.bookingService = bookingService;
     }
 
+    // handles GET requests -- returns a list of bookings
     @GetMapping
     public ResponseEntity<List<BookingApiResponse>>
     getBookings() {
@@ -31,6 +35,7 @@ public class BookingApiController {
         return ResponseEntity.ok(bookings);
     }
 
+    // handles the requests for a specific booking
     @GetMapping("/{id}")
     public ResponseEntity<BookingApiResponse>
     getBookingById(@PathVariable Long id) {
@@ -45,6 +50,7 @@ public class BookingApiController {
         return ResponseEntity.ok(booking);
     }
 
+    // handles POST requests to create a booking
     @PostMapping
     public ResponseEntity<BookingApiResponse>
     createBooking(
@@ -62,6 +68,7 @@ public class BookingApiController {
                 .body(createdBooking);
     }
 
+    // Handles PUT requests to update a booking
     @PutMapping("/{id}")
     public ResponseEntity<BookingApiResponse>
     updateBooking(
@@ -82,6 +89,7 @@ public class BookingApiController {
         return ResponseEntity.ok(updatedBooking);
     }
 
+    // Handles DELETE requests for a booking
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>
     deleteBooking(@PathVariable Long id) {

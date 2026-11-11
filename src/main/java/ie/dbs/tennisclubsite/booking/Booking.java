@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+// Instructs JPA this class represents something stored in a database.
 @Entity
 @Table(name = "booking")
 

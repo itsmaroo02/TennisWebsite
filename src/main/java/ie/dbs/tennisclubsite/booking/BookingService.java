@@ -13,6 +13,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+//*** Handles booking logic ***//
+
+// LAYERS:
+// Controller --> Receives requests from the website or API
+// Service --> Decides what needs to happen
+// Repository --> Communicates with the database
+
 @Service
 public class BookingService {
 
@@ -38,6 +45,7 @@ public class BookingService {
                 .orElse(null);
     }
 
+    //*** Handles the creation of a new booking ***//
     @Transactional
     public Booking createBooking(BookingForm form) {
         Court court = courtRepository
@@ -63,6 +71,7 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
+    //*** Handles updating an existing booking ***//
     @Transactional
     public Booking updateBooking(Long id, BookingForm form) {
         Booking booking = bookingRepository.findById(id).orElse(null);
@@ -92,6 +101,7 @@ public class BookingService {
         return bookingRepository.save(booking);
     }
 
+    //*** Handles the deletion of a booking ***//
     @Transactional
     public boolean deleteBooking(Long id) {
         if (!bookingRepository.existsById(id)) {
@@ -103,6 +113,11 @@ public class BookingService {
         return true;
     }
 
+    // *****************************************
+    //               API Section
+    // *****************************************
+
+    //*** Gets all bookings and converts them into API responses ***//
     public List<BookingApiResponse> getBookingApiList() {
 
         List<Booking> bookings =
@@ -118,6 +133,7 @@ public class BookingService {
         return responses;
     }
 
+    //*** Finds one booking and converts it into an API response ***//
     public BookingApiResponse getBookingApiById(Long id) {
 
         Booking booking =
@@ -130,6 +146,7 @@ public class BookingService {
         return toApiResponse(booking);
     }
 
+    //*** Creates a booking using API request details ***//
     public BookingApiResponse createBookingApi(
             BookingApiRequest request) {
 
@@ -165,6 +182,7 @@ public class BookingService {
         return toApiResponse(savedBooking);
     }
 
+    //*** Handles updating a booking through the API ***//
     public BookingApiResponse updateBookingApi(
             Long id,
             BookingApiRequest request) {
@@ -206,6 +224,7 @@ public class BookingService {
         return toApiResponse(savedBooking);
     }
 
+    //*** Converts a booking entity into a BookingAPIResponse ***//
     private BookingApiResponse toApiResponse(
             Booking booking) {
 
