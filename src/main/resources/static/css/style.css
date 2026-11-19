@@ -60,6 +60,54 @@ h1 {
     overflow: hidden;
 }
 
+/* Navigation */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    max-width: 1100px;
+    margin: 0 auto 24px;
+    padding: 8px;
+    background: #F6F0D7;
+    border: 1px solid #F6F0D7;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+}
+
+nav a {
+    padding: 9px 18px;
+    border-radius: 7px;
+    color: #4F5E39;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s ease, color 0.2s, transform 0.2s ease;
+}
+
+nav a:hover {
+    background: #C9D3B0;
+    color: #1F2A14;
+    transform: translateY(-1px);
+}
+
+nav a:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(95, 111, 69, 0.3);
+}
+
+/* Current Page */
+
+nav a.active {
+    background: #5F6F45;
+    color: white;
+}
+
+nav a.active:hover {
+    background: #4F5E39;
+    color: white;
+}
 
 /* Forms */
 
@@ -336,6 +384,15 @@ tbody tr:hover {
 @media (max-width: 650px) {
     body {
         padding: 20px 12px;
+    }
+
+    nav {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        padding: 8px 14px;
     }
 
     .card {

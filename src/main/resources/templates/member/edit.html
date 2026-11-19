@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Member</title>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="page-header">
+        <div>
+            <h1>Edit Member</h1>
+            <p class="subtitle">
+                Update the member details.
+            </p>
+        </div>
+
+        <img src="/images/KTCL.png" alt="Kildare Tennis Club" class="logo">
+
+    </div>
+
+    <div class="card">
+
+        <form
+                th:action="@{/members/{id}(id=${memberId})}"
+                th:object="${memberForm}"
+                method="post">
+
+            <!-- Member Name -->
+            <div class="form-group">
+
+                <label for="memberName">Member Name</label>
+
+                <input
+                        id="memberName"
+                        type="text"
+                        th:field="*{memberName}"
+                        th:classappend="${#fields.hasErrors('memberName')} ? 'input-error'">
+
+                <div class="field-hint">
+                    Enter the member's full name.
+                </div>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('memberName')}"
+                        th:errors="*{memberName}">
+
+                </div>
+
+            </div>
+
+            <!-- Member Email-->
+            <div class="form-group">
+
+                <label for="memberEmail">Member Email</label>
+
+                <input
+                        id="memberEmail"
+                        type="email"
+                        th:field="*{memberEmail}"
+                        th:classappend="${#fields.hasErrors('memberEmail')} ? 'input-error'">
+
+                <div class="field-hint">
+                    Enter the member's email address.
+                </div>
+
+                <div
+                        class="field-error"
+                        th:if="${#fields.hasErrors('memberEmail')}"
+                        th:errors="*{memberEmail}">
+                </div>
+
+            </div>
+
+            <!-- Actions -->
+            <div class="form-actions">
+
+                <a th:href="@{/members}"
+                   class="btn btn-secondary">
+                    Cancel
+                </a>
+
+                <button
+                        type="submit"
+                        class="btn btn-primary">
+                    Update Member
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    <div class="footer">
+        Advanced Web Development - Tennis Club Website
+    </div>
+
+</div>
+
+</body>
+</html>

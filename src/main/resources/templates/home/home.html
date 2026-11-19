@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tennis Website</title>
+
+</head>
+
+<body>
+
+<div th:replace=
+             "~{fragments/navigation :: navigation('home')}">
+</div>
+
+<div class="page-header">
+
+    <div>
+        <h1>Tennis Management Website</h1>
+    </div>
+
+    <img src="/images/KTCL.png" alt="Kildare Tennis Club" class="logo">
+
+    <div>
+        <h1>Manage Your Club</h1>
+    </div>
+
+</div>
+
+</body>
+
+<div class="footer">
+    Advanced Web Development - Tennis Club Website
+</div>
+
+</html>

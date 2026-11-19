@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tennis Website Members</title>
+
+</head>
+
+<body>
+
+<div th:replace=
+             "~{fragments/navigation :: navigation('members')}">
+</div>
+
+<div class="container">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Members</h1>
+            <p class="subtitle">
+                Manage your members.
+            </p>
+        </div>
+
+        <img src="/images/KTCL.png" alt="Kildare Tennis Club" class="logo">
+
+        <a th:href="@{/members/new}" class="btn btn-primary">
+            <i class="fa-solid fa-person-circle-plus"></i>  Add Member
+        </a>
+
+    </div>
+
+    <div class="card">
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Member Name</th>
+                    <th>Member Email</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="member : ${members}">
+
+                    <td class="member-id"
+                        th:text="${member.memberID}">
+                    </td>
+
+                    <td th:text="${member.memberName}">
+                    </td>
+
+                    <td th:text="${member.memberEmail}">
+                    </td>
+
+                    <td>
+                        <div class="actions">
+
+                            <a class="btn btn-edit"
+                               th:href="@{/members/{id}/edit(id=${member.memberID})}">
+                                <i class="fa-solid fa-user-gear"></i>
+                            </a>
+
+                            <form
+                                    th:action="@{/members/{id}/delete(id=${member.memberID})}"
+                                    method="post">
+
+
+                                <button type="submit" class="btn btn-delete">
+                                    <i class="fa-solid fa-user-minus"></i>
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(members)}">
+                    <td colspan="4" class="empty-state">
+                        No members found.
+                        Add your first member to get started.
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        Advanced Web Development - Tennis Club Website
+    </div>
+
+</div>
+
+</body>
+</html>

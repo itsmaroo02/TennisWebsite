@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+<nav th:fragment="navigation(current)">
+
+    <a th:href="@{/}" th:classappend="${current == 'home'} ? 'active' : ''">
+        Home
+    </a>
+
+    <a th:href="@{/bookings}" th:classappend="${current == 'bookings'} ? 'active' : ''">
+        Bookings
+    </a>
+
+    <a th:href="@{/members}" th:classappend="${current == 'members'} ? 'active' : ''">
+        Members
+    </a>
+
+</nav>
+
+</body>
+</html>

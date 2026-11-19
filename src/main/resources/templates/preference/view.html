@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Page Size Preference</title>
+</head>
+
+<body>
+
+<h1>Page Size Preference</h1>
+
+<p>
+    Current page size:
+    <strong th:text="${pageSize}">10</strong>
+</p>
+
+<form th:action="@{/preferences/page-size}"
+      method="post">
+
+    <label for="pageSize">Page size:</label>
+
+    <select id="pageSize" name="pageSize">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+    </select>
+
+    <button type="submit">Save Preference</button>
+
+</form>
+
+</body>
+</html>
