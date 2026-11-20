@@ -16,20 +16,30 @@
 
 <body>
 
-<div th:replace=
-             "~{fragments/navigation :: navigation('home')}">
-</div>
+<div class="container">
 
-<div class="page-header">
-
-    <div>
-        <h1>Tennis Management Website</h1>
+    <div th:replace=
+                 "~{fragments/navigation :: navigation('home')}">
     </div>
 
-    <img src="/images/KTCL.png" alt="Kildare Tennis Club" class="logo">
+    <div class="page-header">
 
-    <div>
-        <h1>Manage Your Club</h1>
+        <div>
+            <h1>Tennis Management Website</h1>
+        </div>
+
+        <img src="/images/KTCL.png" alt="Kildare Tennis Club" class="logo">
+
+        <div>
+            <h1>Manage Your Club</h1>
+        </div>
+
+    </div>
+
+    <div class="homecard">
+        <p>
+            Welcome to your club's homepage!
+        </p>
     </div>
 
 </div>

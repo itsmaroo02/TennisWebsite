@@ -58,6 +58,19 @@ h1 {
     padding: 32px;
     box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
     overflow: hidden;
+    margin: 0 auto;
+}
+
+.homecard {
+    background: #F6F0D7;
+    border: 1px solid #F6F0D7;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
 }
 
 /* Navigation */
