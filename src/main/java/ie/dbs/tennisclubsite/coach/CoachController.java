@@ -130,6 +130,6 @@ public class CoachController {
 
         coachService.deleteCoach(id);
 
-        return "redirect:/coach";
+        return "redirect:/coaches";
     }
 }

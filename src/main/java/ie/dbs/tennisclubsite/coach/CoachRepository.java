@@ -8,7 +8,7 @@ import java.util.List;
 public interface CoachRepository
         extends JpaRepository<Coach, Long> {
 
-    List<Coach> findByMemberNameContainingIgnoreCase(
+    List<Coach> findByCoachNameContainingIgnoreCase(
             String coachName
     );
 

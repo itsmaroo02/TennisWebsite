@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Tennis Website Coaches</title>
+
+</head>
+
+<body>
+
+<div th:replace=
+             "~{fragments/navigation :: navigation('coaches')}">
+</div>
+
+<div class="container">
+
+    <div class="page-header">
+
+        <div>
+            <h1>Coaches</h1>
+            <p class="subtitle">
+                Manage your coaches.
+            </p>
+        </div>
+
+        <img src="/images/KTCL.png" alt="Kildare Tennis Club" class="logo">
+
+        <a th:href="@{/coaches/new}" class="btn btn-primary">
+            <i class="fa-solid fa-person-circle-plus"></i>  Add Coach
+        </a>
+
+    </div>
+
+    <div class="card">
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Coach Name</th>
+                    <th>Coach Email</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+
+                <tbody>
+
+                <tr th:each="coach : ${coaches}">
+
+                    <td class="coach-id"
+                        th:text="${coach.coachID}">
+                    </td>
+
+                    <td th:text="${coach.coachName}">
+                    </td>
+
+                    <td th:text="${coach.coachEmail}">
+                    </td>
+
+                    <td>
+                        <div class="actions">
+
+                            <a class="btn btn-edit"
+                               th:href="@{/coaches/{id}/edit(id=${coach.coachID})}">
+                                <i class="fa-solid fa-user-gear"></i>
+                            </a>
+
+                            <form
+                                    th:action="@{/coaches/{id}/delete(id=${coach.coachID})}"
+                                    method="post">
+
+
+                                <button type="submit" class="btn btn-delete">
+                                    <i class="fa-solid fa-user-minus"></i>
+                                </button>
+
+                            </form>
+
+                        </div>
+                    </td>
+
+                </tr>
+
+                <tr th:if="${#lists.isEmpty(coaches)}">
+                    <td colspan="4" class="empty-state">
+                        No coaches found.
+                        Add your first coach to get started.
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="footer">
+        Advanced Web Development - Tennis Club Website
+    </div>
+
+</div>
+
+</body>
+</html>
